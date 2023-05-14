@@ -185,6 +185,22 @@ while ({}) {{
 ) --}}}
 cs("cl", { t("console.log("), i(1, ""), t(")") }, { "jcl", "jj" }) -- console.log
 
+-- Arrow Functions
+cs("const",
+	fmt(
+		[[
+const {} = ({}) => {{
+	{}
+}}
+        ]],	{
+			i(1, "myFunc"),
+			i(2, "param"),
+			i(3, "// TODO:"),
+		}
+	)
+)
+
+
 -- End Refactoring --
 
 return snippets, autosnippets
