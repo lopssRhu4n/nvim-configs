@@ -224,19 +224,25 @@ export const {} = defineStore('counter', () => {{
 cs({ trig = "vueroute", regTrig = true, hidden = true },
 	fmt(
 		[[
-	{{
-	      path: '{}',
-	      name: '{}',
-	      component: () => import('{}'),
-	      {}
- }},
+		{{
+		      path: '{}',
+		      name: '{}',
+		      component: () => import('{}'),
+		      {}
+	 }},
 
 	]], {
 			i(1, "/path"),
 			i(2, "name"),
 			i(3, "@/import"),
 			c(4, {
-				sn(1, t([[children: {}]]), i(1, "childrenRoutes")),
+				sn(1, fmt(
+					[[
+					        children: [
+						        {}
+					                ],
+					]],
+					{ i(1, "        //childRoute") })),
 				t(""),
 			})
 		}
