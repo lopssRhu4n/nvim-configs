@@ -13,8 +13,8 @@ local rep = require("luasnip.extras").rep
 
 local snippets, autosnippets = {}, {} --}}}
 
-local group = vim.api.nvim_create_augroup("Javascript Snippets", { clear = true })
-local file_pattern = "*.js"
+local group = vim.api.nvim_create_augroup("Vue Snippets", { clear = true })
+local file_pattern = "*.ts"
 
 local function cs(trigger, nodes, opts) --{{{
 	local snippet = s(trigger, nodes)
@@ -201,6 +201,47 @@ const {} = ({}) => {{
 )
 
 
+cs({ trig = "piniacs", regTrig = true, hidden = true },
+	fmt(
+		[[
+
+import {{ ref, computed }} from 'vue'
+import {{ defineStore }} from 'pinia'
+
+export const {} = defineStore('counter', () => {{
+  const count = ref(0)
+  const doubleCount = computed(() => count.value * 2)
+  function increment() {{
+    count.value++
+  }}
+/
+  return {{ count, doubleCount, increment }}
+}})
+	]], { i(1, "nameStore") }
+	)
+)
+
+cs({ trig = "vueroute", regTrig = true, hidden = true },
+	fmt(
+		[[
+	{{
+	      path: '{}',
+	      name: '{}',
+	      component: () => import('{}'),
+	      {}
+ }},
+
+	]], {
+			i(1, "/path"),
+			i(2, "name"),
+			i(3, "@/import"),
+			c(4, {
+				sn(1, t([[children: {}]]), i(1, "childrenRoutes")),
+				t(""),
+			})
+		}
+	)
+)
 -- End Refactoring --
 
 return snippets, autosnippets
