@@ -201,25 +201,6 @@ const {} = ({}) => {{
 )
 
 
-cs({ trig = "piniacs", regTrig = true, hidden = true },
-	fmt(
-		[[
-
-import {{ ref, computed }} from 'vue'
-import {{ defineStore }} from 'pinia'
-
-export const {} = defineStore('counter', () => {{
-  const count = ref(0)
-  const doubleCount = computed(() => count.value * 2)
-  function increment() {{
-    count.value++
-  }}
-/
-  return {{ count, doubleCount, increment }}
-}})
-	]], { i(1, "nameStore") }
-	)
-)
 
 cs({ trig = "vueroute", regTrig = true, hidden = true },
 	fmt(
@@ -246,6 +227,42 @@ cs({ trig = "vueroute", regTrig = true, hidden = true },
 				t(""),
 			})
 		}
+	)
+)
+
+
+
+local function piniaStateFN(
+	args,
+	parent,
+	user_args
+)
+	return 'computed(() => ' .. args[1][1] .. '.value )'
+end
+cs({ trig = "piniacs", regTrig = true, hidden = true },
+	fmt(
+		[[
+
+import {{ ref, computed }} from 'vue'
+import {{ defineStore }} from 'pinia'
+
+export const {}Store = defineStore('{}', () => {{
+  const {} = {}
+  const doubleCount = computed(() => count.value * 2)
+  function increment() {{
+    count.value++
+  }}
+
+  return {{ {}, doubleCount, increment }}
+}})
+	]], {
+			i(1, "name"),
+			rep(1),
+			i(2, "state"),
+			c(3, { f(piniaStateFN, { 2 }, {}), t("ref('')") }),
+			rep(2)
+		}
+
 	)
 )
 -- End Refactoring --

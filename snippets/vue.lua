@@ -139,11 +139,21 @@ local short_hand_if_statement_return_shortcut = s({ trig = "(if[>%s].+>>)[r<]", 
 	end),
 	t("return "),
 }) --}}}
+
+local justifyCenterSnippet = s("justify-center", t("justify-center"))
+local itemsCenterSnippet = s("items-center", t("items-center"))
+local transitionAllSnippet = s("transition-all", t("transition-all"))
+local shadowSnippet = s("shadow", t("shadow"))
+
 table.insert(autosnippets, if_snippet)
 table.insert(autosnippets, short_hand_if_statement)
 table.insert(autosnippets, short_hand_if_statement_return_shortcut)
 table.insert(snippets, function_snippet)
 table.insert(snippets, function_snippet_func)
+table.insert(snippets, justifyCenterSnippet)
+table.insert(snippets, itemsCenterSnippet)
+table.insert(snippets, transitionAllSnippet)
+table.insert(snippets, shadowSnippet)
 
 -- Begin Refactoring --
 
@@ -203,7 +213,7 @@ const {} = ({}) => {{
 cs({ trig = "vue3ts", regTrig = true, hidden = true },
 	fmt(
 		[[
-<script lang="ts">
+<script setup lang="ts">
 import {{ reactive }} from 'vue';
 {}
 </script>
@@ -230,7 +240,7 @@ cs({ trig = "piniacs", regTrig = true, hidden = true },
 import {{ ref, computed }} from 'vue'
 import {{ defineStore }} from 'pinia'
 
-export const {} = defineStore('counter', () => {{
+export const {}Store = defineStore('{}', () => {{
   const count = ref(0)
   const doubleCount = computed(() => count.value * 2)
   function increment() {{
@@ -239,9 +249,11 @@ export const {} = defineStore('counter', () => {{
 
   return {{ count, doubleCount, increment }}
 }})
-	]], { i(1, "nameStore") }
+	]], { i(1, "name"), rep(1) }
 	)
 )
+--
+--
 -- End Refactoring --
 
 return snippets, autosnippets

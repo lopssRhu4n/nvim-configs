@@ -1,10 +1,8 @@
 return {
-
 	"L3MON4D3/LuaSnip",
 	dependencies = { "rafamadriz/friendly-snippets" },
 
-	config = function ()
-
+	config = function()
 		local ls = require("luasnip") --{{{
 
 
@@ -14,10 +12,10 @@ return {
 
 		vim.cmd([[command! LuaSnipEdit :lua require("luasnip.loaders.from_lua").edit_snippet_files()]]) --}}}
 
--- Virtual Text{{{
+		-- Virtual Text{{{
 		local types = require("luasnip.util.types")
 		ls.config.set_config({
-			history = true, --keep around last snippet local to jump back
+			history = true,       --keep around last snippet local to jump back
 			updateevents = "TextChanged,TextChangedI", --update changes as you type
 			enable_autosnippets = true,
 			ext_opts = {
@@ -34,7 +32,7 @@ return {
 			},
 		}) --}}}
 
--- Key Mapping --{{{
+		-- Key Mapping --{{{
 
 		vim.keymap.set({ "i", "s" }, "<c-s>", "<Esc>:w<cr>")
 		vim.keymap.set({ "i", "s" }, "<c-u>", '<cmd>lua require("luasnip.extras.select_choice")()<cr><C-c><C-c>')
@@ -45,18 +43,18 @@ return {
 			end
 		end, { silent = true })
 
--- vim.keymap.set({ "i", "s" }, "<C-k>", function()
--- 	if ls.expand_or_jumpable() then
--- 		ls.expand_or_jump()
---
---
--- 	end
--- end, { silent = true })
--- vim.keymap.set({ "i", "s" }, "<C-j>", function()
--- 	if ls.jumpable() then
--- 		ls.jump(-1)
--- 	end
--- end, { silent = true })
+		-- vim.keymap.set({ "i", "s" }, "<C-k>", function()
+		-- 	if ls.expand_or_jumpable() then
+		-- 		ls.expand_or_jump()
+		--
+		--
+		-- 	end
+		-- end, { silent = true })
+		-- vim.keymap.set({ "i", "s" }, "<C-j>", function()
+		-- 	if ls.jumpable() then
+		-- 		ls.jump(-1)
+		-- 	end
+		-- end, { silent = true })
 
 		vim.keymap.set({ "i", "s" }, "<A-y>", "<Esc>o", { silent = true })
 
@@ -75,7 +73,7 @@ return {
 			if ls.choice_active() then
 				ls.change_choice(1)
 			else
-		-- print current time
+				-- print current time
 				local t = os.date("*t")
 				local time = string.format("%02d:%02d:%02d", t.hour, t.min, t.sec)
 				print(time)
@@ -90,7 +88,8 @@ return {
 		-- More Settings --
 
 		vim.keymap.set("n", "<Leader><CR>", "<cmd>LuaSnipEdit<cr>", { silent = true, noremap = true })
-		vim.cmd([[autocmd BufEnter */snippets/*.lua nnoremap <silent> <buffer> <CR> /-- End Refactoring --<CR>O<Esc>O]])
-
+		vim.cmd(
+		[[autocmd BufEnter */snippets/*.lua nnoremap <silent> <buffer> <CR> /-- End Refactoring --<CR>O<Esc>O]])
+		require("luasnip").filetype_extend(".vue", { ".js", ".ts" })
 	end
 }
