@@ -6,3 +6,4 @@ vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("x", "<leader>p", "\"_dP")
 vim.keymap.set("n", "<leader>gs", vim.cmd.Git);
+vim.keymap.set("n", "<leader>y", ":NeoTreeShow<CR>")
