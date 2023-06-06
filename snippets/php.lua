@@ -78,8 +78,12 @@ cs({ trig = "it", regTrig = true, hidden = true},
 		public function it_{}()
 		{{
 			{}
+
+			{}
+
+			{}
 		}}
-		]], {i(1, "test_name"), i(2, "// test body")}
+		]], {i(1, "test_name"), i(2, "// arrange"), i(3, "// act"), i(4, "// assert")}
 	)
 
 )
