@@ -66,11 +66,11 @@ local function cs(trigger, nodes, opts) --{{{
 	end
 
 	table.insert(target_table, snippet) -- insert snippet into appropriate table
-end --}}}
+end                                  --}}}
 
 -- Start Refactoring --
 
-cs({ trig = "it", regTrig = true, hidden = true},
+cs({ trig = "it", regTrig = true, hidden = true },
 
 	fmt(
 		[[
@@ -83,8 +83,22 @@ cs({ trig = "it", regTrig = true, hidden = true},
 
 			{}
 		}}
-		]], {i(1, "test_name"), i(2, "// arrange"), i(3, "// act"), i(4, "// assert")}
+		]], { i(1, "test_name"), i(2, "// arrange"), i(3, "// act"), i(4, "// assert") }
 	)
+
+)
+
+cs({ trig = "invoke", regTrig = true, hidden = true },
+	fmt(
+		[[
+		public function __invoke({})
+		{{
+			{}
+		}}
+
+        	]], { i(1, 'Request $req'), i(2, '// Body') }
+	)
+
 
 )
 -- End Refactoring --

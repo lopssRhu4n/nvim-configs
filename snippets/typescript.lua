@@ -265,6 +265,49 @@ export const {}Store = defineStore('{}', () => {{
 
 	)
 )
+
+cs({ trig = 'vtf', regTrig = false, hidden = true },
+	fmt(
+		[[
+import {{ describe, it, expect }} from 'vitest';
+import {} from '{}';
+import {{ mount }} from '@vue/test-utils';
+
+describe('{}', () => {{
+  const wrapper = mount({});
+
+  it('{}', () => {{
+    expect({}).{};
+  }})
+
+}})
+
+		]]
+		, {
+			i(1, "Component"),
+			i(2, "componet/path"),
+			i(3, "Component Test"),
+			rep(1),
+			i(4, 'should...'),
+			i(5, 'true'),
+			i(6, 'toBe(true)')
+		}
+	)
+)
+
+cs({ trig = 'it', regTrig = true, hidden = false },
+	fmt(
+		[[
+  it('{}', () => {{
+    expect({}).{}
+}})
+              ]], {
+			i(1, 'should...'),
+			i(2, 'true'),
+			i(3, 'toBe(true)'),
+		}
+	)
+)
 -- End Refactoring --
 
 return snippets, autosnippets
