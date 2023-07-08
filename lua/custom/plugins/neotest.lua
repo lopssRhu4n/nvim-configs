@@ -5,7 +5,8 @@ return
   dependencies = {
     "nvim-lua/plenary.nvim",
     "olimorris/neotest-phpunit",
-    "marilari88/neotest-vitest"
+    "marilari88/neotest-vitest",
+    "theutz/neotest-pest",
   },
   keys = {
     { "<leader>ts",  function() require('neotest').summary.toggle() end },
@@ -22,7 +23,8 @@ return
     require("neotest").setup({
       adapters = {
         require("neotest-phpunit"),
-        require("neotest-vitest")
+        require("neotest-vitest"),
+        require("neotest-pest")
       },
     })
 

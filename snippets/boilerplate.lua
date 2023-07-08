@@ -1,4 +1,4 @@
-local ls = require("luasnip") --{{{
+local ls = require("luasnip")   --{{{
 local s = ls.s
 local i = ls.i
 local t = ls.t
@@ -66,7 +66,7 @@ local function cs(trigger, nodes, opts) --{{{
 	end
 
 	table.insert(target_table, snippet) -- insert snippet into appropriate table
-end --}}}
+end                                  --}}}
 
 -- Start Refactoring --
 

@@ -10,4 +10,9 @@ vim.keymap.set("n", "<leader>ga", ":Gwrite<CR>");
 vim.keymap.set("n", "<leader>gc", ":Git commit<CR>")
 vim.keymap.set("n", "<leader>gu", ":Git unstage<CR>")
 vim.keymap.set("n", "<leader>y", ":NeoTreeShow<CR>")
-vim.keymap.set("n", "<leader>lf", ":lua vim.lsp.buf.format({ async = false})<CR>")
+vim.keymap.set("n", "<leader>lf", ":lua vim.lsp.buf.format({ async = false, filter = function(client) return client.name ~= \"tsserver\" end})<CR>")
+
+
+vim.api.nvim_create_user_command("NullLsInfo", function()
+        require("null-ls.info").show_window()
+    end, {})

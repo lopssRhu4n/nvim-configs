@@ -9,8 +9,10 @@ return {
 		local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 		null_ls.setup({
 			sources = {
-				formatting.prettierd.with({ }),
+				formatting.prettierd,
+				formatting.prettier,
 				formatting.stylua,
+				formatting.phpcsfixer
 			},
 			on_attach = function(client, bufnr)
 				if client.supports_method("textDocument/formatting") then
@@ -19,9 +21,12 @@ return {
 						group = augroup,
 						buffer = bufnr,
 						callback = function()
-							-- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
-							-- on later neovim version, you should use vim.lsp.buf.format({ async = false }) instead
-							vim.lsp.buf.format({ async = false })
+							vim.lsp.buf.format({
+								bufnr = bufnr,
+								filter = function(client)
+									return client.name == "null-ls"
+								end,
+							})
 						end,
 					})
 				end
